@@ -32,9 +32,9 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-      <html lang="en">
+      <html lang="es">
         <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiase `}
+          className={`${geistSans.variable} ${geistMono.variable} antialiase`}
         >
           <header className="flex justify-end items-center p-4 gap-4 h-16">
             <SignedOut>
@@ -45,7 +45,7 @@ export default function RootLayout({
               <UserButton />
             </SignedIn>
           </header>
-          <main className="w-full h-full min-h-screen">{children}</main>
+          <main className="w-full min-h-[calc(100dvh-64px)]">{children}</main>
         </body>
       </html>
     </ClerkProvider>
