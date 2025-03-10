@@ -1,4 +1,4 @@
-import { AppSidebar } from "@/components/ui/Shared/app-sidebar";
+import { AppSidebar } from "@/components/Shared";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { Metadata } from "next";
 

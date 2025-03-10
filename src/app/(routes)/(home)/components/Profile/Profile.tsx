@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 
-export default function Profile() {
+export function Profile() {
   const [copied, setCopied] = useState(false);
   const [origin, setOrigin] = useState("");
 
