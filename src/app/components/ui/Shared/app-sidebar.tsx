@@ -1,10 +1,16 @@
-import { Calendar, Home, Inbox, Search, Settings } from "lucide-react";
+import {
+  AlignVerticalSpaceAround,
+  CalendarRange,
+  ChartNoAxesColumnIncreasing,
+  Eclipse,
+  Settings,
+  Store,
+} from "lucide-react";
 
 import {
   Sidebar,
   SidebarContent,
   SidebarGroup,
-  SidebarGroupContent,
   SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuButton,
@@ -14,24 +20,29 @@ import {
 // Menu items.
 const items = [
   {
-    title: "Home",
+    title: "Links",
     url: "#",
-    icon: Home,
+    icon: AlignVerticalSpaceAround,
   },
   {
-    title: "Inbox",
+    title: "Shop",
     url: "#",
-    icon: Inbox,
+    icon: Store,
   },
   {
-    title: "Calendar",
+    title: "Appearence",
     url: "#",
-    icon: Calendar,
+    icon: Eclipse,
   },
   {
-    title: "Search",
+    title: "Social Planner",
     url: "#",
-    icon: Search,
+    icon: CalendarRange,
+  },
+  {
+    title: "Analytics",
+    url: "#",
+    icon: ChartNoAxesColumnIncreasing,
   },
   {
     title: "Settings",
@@ -42,24 +53,22 @@ const items = [
 
 export function AppSidebar() {
   return (
-    <Sidebar>
+    <Sidebar collapsible="icon">
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel>Application</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {items.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    <a href={item.url}>
-                      <item.icon />
-                      <span>{item.title}</span>
-                    </a>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
-            </SidebarMenu>
-          </SidebarGroupContent>
+          <SidebarMenu>
+            {items.map((item) => (
+              <SidebarMenuItem key={item.title}>
+                <SidebarMenuButton asChild>
+                  <a href={item.url}>
+                    <item.icon />
+                    <span>{item.title}</span>
+                  </a>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            ))}
+          </SidebarMenu>
         </SidebarGroup>
       </SidebarContent>
     </Sidebar>
