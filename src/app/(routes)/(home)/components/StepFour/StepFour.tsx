@@ -6,26 +6,51 @@ import { Button } from "@/components/ui/button";
 import { useStepConfig } from "@/hooks/useStepConfig";
 import { UploadButton } from "@/lib/uploadthing";
 import { Plus } from "lucide-react";
+import axios from "axios";
+import { toast } from "sonner";
 
 export function StepFour() {
-  const { infoUser, setInfoUser } = useStepConfig();
-
-  const [name, setName] = useState("");
-  const [username, setUsername] = useState("");
+  const { infoUser, setInfoUser, nextStep } = useStepConfig();
+  const [name, setName] = useState(infoUser.name);
+  const [username, setUsername] = useState(infoUser.username);
   const [avatarUrl, setAvatarUrl] = useState(infoUser.avatarUrl);
   const [photoUrl, setPhotoUrl] = useState("");
   const [showUploadPhoto, setShowUploadPhoto] = useState(false);
-  const [selectedAvatar, setSelectedAvatar] = useState("");
+  const [selectedAvatar, setSelectedAvatar] = useState(infoUser.avatarUrl);
 
-  const handleContinue = () => {
-    setInfoUser((prevState) => {
-      return {
-        ...prevState,
+  const handleContinue = async () => {
+    if (!username || !name || !avatarUrl) {
+      alert("Please, fill all fields and select and image");
+      return;
+    }
+
+    setInfoUser((prevState) => ({
+      ...prevState,
+      name: name,
+      username: username,
+      avatarUrl: avatarUrl,
+    }));
+
+    try {
+      const response = await axios.post("/api/user", {
         name: name,
         username: username,
-        avatarUrl: avatarUrl,
-      };
-    });
+        avatarUrl: infoUser.avatarUrl,
+        links: infoUser.platforms,
+        typeUser: infoUser.typeUser,
+      });
+
+      if (response.status === 201) nextStep();
+    } catch (error) {
+      toast("ERROR", {
+        description: "User exists, please try other user.",
+        action: {
+          label: "Undo",
+          onClick: () => console.log("Undo"),
+        },
+      });
+      console.error(error);
+    }
   };
 
   return (
@@ -93,7 +118,7 @@ export function StepFour() {
       </ul>
 
       <div className="mt-4">
-        {/* <h2 className="mb-3 text-center text-lg">Add your username</h2> */}
+        <h2 className="mb-3 text-center text-lg">Add your name and username</h2>
         <div className="grid gap-3 w-full">
           <Input
             placeholder="Add your name"
