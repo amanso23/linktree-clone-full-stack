@@ -13,7 +13,12 @@ import { useState } from "react";
 import { useStepConfig } from "@/hooks/useStepConfig";
 import { Progress } from "@/components/ui/progress";
 import { ArrowLeft } from "lucide-react";
-import { StepOne, StepTwo } from "@/(routes)/(home)/components";
+import {
+  StepFour,
+  StepOne,
+  StepThree,
+  StepTwo,
+} from "@/(routes)/(home)/components";
 
 export function HandlerSteps({ onReload }: HandlerStepsProps) {
   const [openDialog, setOpenDialog] = useState(true);
@@ -48,8 +53,8 @@ export function HandlerSteps({ onReload }: HandlerStepsProps) {
             <div>
               {step === 1 && <StepOne />}
               {step === 2 && <StepTwo />}
-              {step === 3 && <p>Step three</p>}
-              {step === 4 && <p>Step four</p>}
+              {step === 3 && <StepThree />}
+              {step === 4 && <StepFour />}
               {step === 5 && <p>Step five</p>}
             </div>
           </AlertDialogDescription>

@@ -23,7 +23,7 @@ export const StepConfigUserContext = createContext<StepConfigUserContextType>({
 export function StepConfigUserProvider({
   children,
 }: StepConfigUserProviderProps) {
-  const [step, setStep] = useState(2);
+  const [step, setStep] = useState(4);
   const [infoUser, setInfoUser] = useState<
     StepConfigUserContextType["infoUser"]
   >({

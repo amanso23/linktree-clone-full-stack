@@ -4,15 +4,12 @@ import { stepTwoData } from "./data";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { InfoUserType } from "@/contexts/StepConfigUser/types";
-import { platform } from "os";
 
 export function StepTwo() {
   const { setInfoUser, infoUser, nextStep } = useStepConfig();
   const [selectedPlatforms, setSelectedPlatforms] = useState<
     InfoUserType["platforms"]
-  >([]);
-
-  console.log(infoUser);
+  >(infoUser.platforms);
 
   const selectedClass = "bg-black text-white hover:opacity-85";
 
@@ -43,7 +40,7 @@ export function StepTwo() {
           <li
             key={name}
             className={`flex flex-col gap-1 items-center justify-center rounded-lg border py-3 transition-all duration-300 cursor-pointer ${
-              selectedPlatforms.some((platform) => platform.name === name)
+              infoUser.platforms.some((platform) => platform.name === name)
                 ? selectedClass
                 : "hover:bg-gray-100"
             }`}
@@ -55,7 +52,9 @@ export function StepTwo() {
         ))}
       </ul>
 
-      <Button className="mt-4 w-full">Continue</Button>
+      <Button className="mt-4 w-full" onClick={nextStep}>
+        Continue
+      </Button>
     </section>
   );
 }

@@ -4,8 +4,8 @@ import { useStepConfig } from "@/hooks/useStepConfig";
 import { useState } from "react";
 
 export function StepOne() {
-  const { setInfoUser, nextStep } = useStepConfig();
-  const [selectedValue, setSelectedValue] = useState("");
+  const { setInfoUser, nextStep, infoUser } = useStepConfig();
+  const [selectedValue, setSelectedValue] = useState(infoUser.typeUser);
 
   const selectedValueClass = "bg-black text-white hover:opacity-85";
 
