@@ -14,6 +14,7 @@ import { useStepConfig } from "@/hooks/useStepConfig";
 import { Progress } from "@/components/ui/progress";
 import { ArrowLeft } from "lucide-react";
 import {
+  Summary,
   StepFour,
   StepOne,
   StepThree,
@@ -55,7 +56,7 @@ export function HandlerSteps({ onReload }: HandlerStepsProps) {
               {step === 2 && <StepTwo />}
               {step === 3 && <StepThree />}
               {step === 4 && <StepFour />}
-              {step === 5 && <p>Step five</p>}
+              {step === 5 && <Summary onReload={onCloseDialog} />}
             </div>
           </AlertDialogDescription>
         </AlertDialogHeader>
