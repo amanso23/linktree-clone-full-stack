@@ -39,8 +39,8 @@ export function HandlerSteps({ onReload }: HandlerStepsProps) {
             <div className="flex justify-between mb-3">
               {step > 1 && (
                 <Button variant={"outline"} onClick={prevStep}>
-                  {step >= 1 ? "Back" : ""}
                   <ArrowLeft className="w-auto h-12" />
+                  {step >= 1 ? "Back" : ""}
                 </Button>
               )}
             </div>
