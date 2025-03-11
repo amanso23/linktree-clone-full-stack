@@ -30,7 +30,7 @@ export const stepTwoData = [
     link: "",
   },
   {
-    icon: "https://626a6b3cns.ufs.sh/f/cQaenfiARKuVP7rt0JVD5KdwY4n8OmxFbA03Z2uGkCSfMzEo",
+    icon: "https://626a6b3cns.ufs.sh/f/cQaenfiARKuVV40GWdtjlKtMWuCrR2NSi31I0E5UFafc4Gwd",
     name: "TikTok",
     link: "",
   },
