@@ -40,7 +40,7 @@ export function StepFour() {
         typeUser: infoUser.typeUser,
       });
 
-      if (response.status === 201) nextStep();
+      if (response.status === 200) nextStep();
     } catch (error) {
       toast("ERROR", {
         description: "User exists, please try other user.",
