@@ -45,7 +45,7 @@ export default function Home({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="p-4">
-      <div className="grid grid-cols-1 md:grid-cols-[60%_auto]">
+      <div className="grid grid-cols-1 xl:grid-cols-[60%_auto]">
         <section className="grid">
           <Profile />
           <h1>Profile info</h1>

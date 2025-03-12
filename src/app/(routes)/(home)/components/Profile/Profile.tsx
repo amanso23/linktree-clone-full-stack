@@ -20,8 +20,8 @@ export function Profile() {
 
   return (
     <div className="bg-indigo-100 rounded-3xl">
-      <div className="flex flex-col justify-center text-center py-2 px-4 items-center gap-2 md:flex-row md:justify-start ">
-        <h2 className="font">✨ Your Linktree clone is live:</h2>
+      <div className="flex flex-wrap flex-col justify-center text-center py-2 px-4 items-center gap-2 md:flex-row md:justify-start ">
+        <h2>✨ Your Linktree clone is live:</h2>
         <span className="link">
           {origin ? `${origin}/linktreeTest` : "Loading..."}
         </span>

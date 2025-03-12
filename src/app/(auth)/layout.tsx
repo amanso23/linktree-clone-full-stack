@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <main className="grid grid-cols-1 place-items-center h-full">
+    <main className="grid grid-cols-1 place-items-center h-screen">
       {children}
     </main>
   );
