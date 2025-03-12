@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { Link, User } from "@prisma/client";
 import { LoaderProfile } from "@/components/Shared";
 import { StepConfigUserProvider } from "@/contexts";
+import { UserProvider } from "@/contexts";
 import {
   HandlerSteps,
   Profile,
@@ -48,7 +49,7 @@ export default function Home({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <div className="p-4">
+    <UserProvider>
       <div className="grid grid-cols-1 xl:grid-cols-[60%_auto]">
         <section className="grid">
           <Profile />
@@ -59,12 +60,11 @@ export default function Home({ children }: { children: React.ReactNode }) {
             <h3>Add a link to get started</h3>
           </div>
         </section>
-
         <section>
           <h1>Profile preview</h1>
         </section>
       </div>
       {children}
-    </div>
+    </UserProvider>
   );
 }
