@@ -7,14 +7,14 @@ import { InfoUserType } from "@/contexts/StepConfigUser/types";
 
 export function StepTwo() {
   const { setInfoUser, infoUser, nextStep } = useStepConfig();
-  const [selectedPlatforms, setSelectedPlatforms] = useState<
-    InfoUserType["platforms"]
-  >(infoUser.platforms);
+  const [selectedLinks, setSelectedlinks] = useState<InfoUserType["links"]>(
+    infoUser.links
+  );
 
   const selectedClass = "bg-black text-white hover:opacity-85";
 
   const handleClick = (icon: string, name: string, link: string) => {
-    setSelectedPlatforms((prevState) => {
+    setSelectedlinks((prevState) => {
       if (prevState.some((state) => state.name === name)) {
         return prevState.filter((s) => s.name !== name);
       }
@@ -24,23 +24,23 @@ export function StepTwo() {
 
   useEffect(() => {
     setInfoUser((prevState) => {
-      if (prevState.platforms !== selectedPlatforms) {
-        return { ...prevState, platforms: selectedPlatforms };
+      if (prevState.links !== selectedLinks) {
+        return { ...prevState, links: selectedLinks };
       }
       return prevState;
     });
-  }, [selectedPlatforms]);
+  }, [selectedLinks]);
 
   return (
     <section className="text-center">
-      <h2 className="text-2xl">Which platforms are you</h2>
+      <h2 className="text-2xl">Which links are you</h2>
       <p>Pickup the ones you are on.</p>
       <ul className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
         {stepTwoData.map(({ name, icon, link }) => (
           <li
             key={name}
             className={`flex flex-col gap-1 items-center justify-center rounded-lg border py-3 transition-all duration-300 cursor-pointer ${
-              infoUser.platforms.some((platform) => platform.name === name)
+              infoUser.links.some((platform) => platform.name === name)
                 ? selectedClass
                 : "hover:bg-gray-100"
             }`}

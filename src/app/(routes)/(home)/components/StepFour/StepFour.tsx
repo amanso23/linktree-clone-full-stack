@@ -35,8 +35,8 @@ export function StepFour() {
       const response = await axios.post("/api/user", {
         name: name,
         username: username,
-        avatarUrl: infoUser.avatarUrl,
-        links: infoUser.platforms,
+        avatarUrl: avatarUrl,
+        links: infoUser.links,
         typeUser: infoUser.typeUser,
       });
 

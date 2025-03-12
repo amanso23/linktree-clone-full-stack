@@ -10,7 +10,7 @@ export const StepConfigUserContext = createContext<StepConfigUserContextType>({
   infoUser: {
     typeUser: "",
     name: "",
-    platforms: [],
+    links: [],
     avatarUrl: "",
     username: "",
   },
@@ -29,7 +29,7 @@ export function StepConfigUserProvider({
   >({
     typeUser: "",
     name: "",
-    platforms: [],
+    links: [],
     avatarUrl: "",
     username: "",
   });

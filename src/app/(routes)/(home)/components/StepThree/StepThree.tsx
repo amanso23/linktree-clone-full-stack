@@ -10,7 +10,7 @@ export function StepThree() {
   console.log(infoUser);
 
   const handleContinue = () => {
-    const updatedPlatforms = infoUser.platforms.map(({ icon, name }) => {
+    const updatedLinks = infoUser.links.map(({ icon, name }) => {
       const input = document.getElementById(
         `${name}-input`
       ) as HTMLInputElement;
@@ -23,7 +23,7 @@ export function StepThree() {
     });
 
     setInfoUser((prevState) => {
-      return { ...prevState, platforms: updatedPlatforms };
+      return { ...prevState, links: updatedLinks };
     });
 
     nextStep();
@@ -34,7 +34,7 @@ export function StepThree() {
       <h2 className="text-2xl">Add your links</h2>
       <p>Complite the fields to add your links. </p>
       <ul className="flex flex-col gap-4 mt-4">
-        {infoUser.platforms.map(({ icon, link, name }) => (
+        {infoUser.links.map(({ icon, link, name }) => (
           <li key={name} className="flex items-center gap-2">
             <Image alt="Icon" src={icon} width={40} height={40} />
             <input

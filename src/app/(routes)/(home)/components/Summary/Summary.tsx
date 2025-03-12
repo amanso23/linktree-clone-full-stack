@@ -7,7 +7,7 @@ import { Confetti } from "@/components/Shared";
 export function Summary({ onReload }: Props) {
   const { infoUser } = useStepConfig();
 
-  const { avatarUrl, name, platforms, typeUser, username } = infoUser;
+  const { avatarUrl, name, links, typeUser, username } = infoUser;
 
   return (
     <section className="text-center">
@@ -30,7 +30,7 @@ export function Summary({ onReload }: Props) {
         </span>
 
         <ul className="flex flex-col self-start gap-4 mt-2">
-          {platforms.map(({ icon, link, name }) => (
+          {links.map(({ icon, link, name }) => (
             <li key={name}>
               <a
                 rel="noopener noreferrer"
