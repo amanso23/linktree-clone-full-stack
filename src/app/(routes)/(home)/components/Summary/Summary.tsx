@@ -2,6 +2,7 @@ import { useStepConfig } from "@/hooks/useStepConfig";
 import Image from "next/image";
 import { Props } from "./types";
 import { Button } from "@/components/ui/button";
+import { Confetti } from "@/components/Shared";
 
 export function Summary({ onReload }: Props) {
   const { infoUser } = useStepConfig();
@@ -49,6 +50,7 @@ export function Summary({ onReload }: Props) {
       <Button className="mt-4 w-full" onClick={onReload}>
         Continue to the profile
       </Button>
+      <Confetti />
     </section>
   );
 }
