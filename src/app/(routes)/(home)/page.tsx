@@ -6,7 +6,11 @@ import { useEffect, useState } from "react";
 import { Link, User } from "@prisma/client";
 import { LoaderProfile } from "@/components/Shared";
 import { StepConfigUserProvider } from "@/contexts";
-import { HandlerSteps, Profile } from "@/(routes)/(home)/components";
+import {
+  HandlerSteps,
+  Profile,
+  ProfileInfo,
+} from "@/(routes)/(home)/components";
 
 export default function Home({ children }: { children: React.ReactNode }) {
   const { user } = useUser();
@@ -48,7 +52,7 @@ export default function Home({ children }: { children: React.ReactNode }) {
       <div className="grid grid-cols-1 xl:grid-cols-[60%_auto]">
         <section className="grid">
           <Profile />
-          <h1>Profile info</h1>
+          <ProfileInfo onReload={setReload} />
           <div className="grid place-items-center opacity-60">
             <TreePalm className="w-auto h-16 " />
             <h2>Show the world who you are.</h2>

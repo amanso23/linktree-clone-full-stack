@@ -11,7 +11,7 @@ export type StepConfigUserContextType = {
 type InfoUserType = {
   typeUser: string;
   name: string;
-  platforms: {
+  links: {
     icon: string;
     link: string;
     name: string;
