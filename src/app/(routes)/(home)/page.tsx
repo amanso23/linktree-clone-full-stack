@@ -11,6 +11,7 @@ import {
   HandlerSteps,
   Profile,
   ProfileInfo,
+  ProfilePreview,
 } from "@/(routes)/(home)/components";
 
 export default function Home({ children }: { children: React.ReactNode }) {
@@ -50,18 +51,18 @@ export default function Home({ children }: { children: React.ReactNode }) {
 
   return (
     <UserProvider>
-      <div className="grid grid-cols-1 xl:grid-cols-[40%_auto]">
-        <section className="grid">
+      <div className={"grid grid-cols-1 gap-12 xl:grid-cols-[60%_auto]"}>
+        <section>
           <Profile />
           <ProfileInfo onReload={setReload} />
-          <div className="grid place-items-center opacity-60">
-            <TreePalm className="w-auto h-16 " />
+          <div className="grid place-items-center opacity-60 mt-12">
+            <TreePalm className="w-auto h-16" />
             <h2>Show the world who you are.</h2>
             <h3>Add a link to get started</h3>
           </div>
         </section>
         <section>
-          <h1>Profile preview</h1>
+          <ProfilePreview />
         </section>
       </div>
       {children}
