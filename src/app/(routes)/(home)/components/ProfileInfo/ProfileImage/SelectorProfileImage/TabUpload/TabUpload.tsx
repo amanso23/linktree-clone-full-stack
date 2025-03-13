@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { useUserInfo } from "@/hooks/useUser";
 import Image from "next/image";
 import axios from "axios";
+import { toast } from "sonner";
 
 export function TabUpload({ setShowDialog, setShowTab }: TabUploadProps) {
   const { user, reloadUser } = useUserInfo();
@@ -13,10 +14,18 @@ export function TabUpload({ setShowDialog, setShowTab }: TabUploadProps) {
 
   const onUploadAvatar = async () => {
     const response = await axios.patch("api/update-user", {
-      avatarUrl: avatarUrl,
+      avatarUrl,
     });
 
     if (response.status === 200) {
+      toast("Avatar Uploaded", {
+        description: "Your avatar has been successfully uploaded.",
+        duration: 3000,
+        action: {
+          label: "Undo",
+          onClick: () => console.log("Undo clicked"),
+        },
+      });
       setShowDialog(false);
       reloadUser();
     }
@@ -54,7 +63,6 @@ export function TabUpload({ setShowDialog, setShowTab }: TabUploadProps) {
       )}
 
       <Button className="w-full" onClick={onUploadAvatar}>
-        {" "}
         Upload
       </Button>
     </div>
