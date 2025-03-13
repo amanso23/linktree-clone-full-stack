@@ -10,11 +10,11 @@ export function Profile() {
 
   const { user } = useUserInfo();
 
-  if (!user) return;
-
   useEffect(() => {
     setOrigin(window.location.origin);
   }, []);
+
+  if (!user) return null;
 
   const copyToClipboard = () => {
     const link = document.querySelector(".link");
