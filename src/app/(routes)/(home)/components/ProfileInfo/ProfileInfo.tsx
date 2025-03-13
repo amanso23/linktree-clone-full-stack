@@ -1,14 +1,16 @@
-import { useUserInfo } from "@/hooks/useUser";
 import { ProfileImage } from "./ProfileImage";
 import { ProfileInfoProps } from "./types";
+import { BlockInfo } from "./ProfileImage/BlockInfo";
+import { ProfileData } from "./ProfileData";
 
 export function ProfileInfo({ onReload }: ProfileInfoProps) {
-  const { user } = useUserInfo();
-
   return (
-    <section className="flex gap-x-2 p-4">
-      <ProfileImage />
-      <div>{user?.name}</div>
+    <section className="flex justify-between items-center p-6">
+      <div className="flex items-center gap-4">
+        <ProfileImage />
+        <ProfileData />
+      </div>
+      <BlockInfo />
     </section>
   );
 }
