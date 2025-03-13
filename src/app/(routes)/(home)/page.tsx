@@ -50,7 +50,7 @@ export default function Home({ children }: { children: React.ReactNode }) {
 
   return (
     <UserProvider>
-      <div className="grid grid-cols-1 xl:grid-cols-[60%_auto]">
+      <div className="grid grid-cols-1 xl:grid-cols-[40%_auto]">
         <section className="grid">
           <Profile />
           <ProfileInfo onReload={setReload} />
