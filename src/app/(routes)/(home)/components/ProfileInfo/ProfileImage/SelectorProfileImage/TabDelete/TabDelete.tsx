@@ -11,12 +11,16 @@ import { DialogTitle } from "@radix-ui/react-dialog";
 export function TabDelete({ setShowDialog, setShowTab }: TabDeleteProps) {
   const { reloadUser, user } = useUserInfo();
 
+  if (!user) return null;
+
+  const { avatarUrl } = user;
+
   const onDeleteAvatar = async () => {
     const response = await axios.patch("/api/update-user", {
       avatarUrl: "",
     });
     if (response.status === 200) {
-      toast("Avatar Removed", {
+      toast("Avatar Removed ", {
         description: "Your avatar has been successfully removed.",
         duration: 3000,
         action: {
@@ -44,7 +48,7 @@ export function TabDelete({ setShowDialog, setShowTab }: TabDeleteProps) {
       <Dialog>
         <DialogTrigger>
           <Image
-            src={user?.avatarUrl || "/default-avatar.webp"}
+            src={avatarUrl || "/default-avatar.webp"}
             alt="ProfileImage"
             width={300}
             height={300}
@@ -54,7 +58,7 @@ export function TabDelete({ setShowDialog, setShowTab }: TabDeleteProps) {
         <DialogContent className="max-w-96 h-auto aspect-square p-0">
           <DialogTitle className="hidden"></DialogTitle>
           <Image
-            src={user?.avatarUrl || "/default-avatar.webp"}
+            src={avatarUrl || "/default-avatar.webp"}
             alt="DialogProfileImage"
             width={300}
             height={300}

@@ -5,6 +5,8 @@ import { useUserInfo } from "@/hooks/useUser";
 export function TabSelector({ setShowTab }: TabSelectorProps) {
   const { user } = useUserInfo();
 
+  if (!user) return null;
+
   return (
     <ul className="flex flex-col gap-4 items-center cursor-pointer text-black">
       <li
