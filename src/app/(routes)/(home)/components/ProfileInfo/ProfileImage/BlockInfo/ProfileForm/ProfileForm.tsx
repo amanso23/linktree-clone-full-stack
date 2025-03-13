@@ -18,26 +18,45 @@ import { useForm } from "react-hook-form";
 import { useUserInfo } from "@/hooks/useUser";
 import axios from "axios";
 import { toast } from "sonner";
+import { Textarea } from "@/components/ui/textarea";
 
 const profileFormSchema = z.object({
-  name: z.string().optional(),
-  username: z.string().optional(),
-  bio: z.string().optional(),
+  name: z
+    .string()
+    .min(2, {
+      message: "Name must contain at least 2 character(s), 100 max.",
+    })
+    .max(100)
+    .optional(),
+  username: z
+    .string()
+    .min(2, {
+      message: "Username must contain at least 2 character(s), 100 max.",
+    })
+    .max(100)
+    .optional(),
+  bio: z
+    .string()
+    .min(2, {
+      message: "Bio must contain at least 2 character(s), 400 max.",
+    })
+    .max(400)
+    .optional(),
 });
 
 export function ProfileForm({ setOpenDialog }: ProfileFormProps) {
   const { user, reloadUser } = useUserInfo();
 
-  if (!user) return;
+  if (!user) return null;
 
   const { name, username, bio } = user;
 
   const form = useForm<z.infer<typeof profileFormSchema>>({
     resolver: zodResolver(profileFormSchema),
     defaultValues: {
-      username: username ?? undefined,
-      name: name ?? undefined,
-      bio: bio ?? undefined,
+      username: username || "",
+      name: name || "",
+      bio: bio || "",
     },
   });
 
@@ -103,9 +122,10 @@ export function ProfileForm({ setOpenDialog }: ProfileFormProps) {
             <FormItem>
               <FormLabel>Bio</FormLabel>
               <FormControl>
-                <Input
-                  placeholder="Write a short bio about yourself"
+                <Textarea
+                  placeholder="Write your bio here..."
                   {...field}
+                  maxLength={400}
                 />
               </FormControl>
               <FormDescription>
@@ -117,7 +137,7 @@ export function ProfileForm({ setOpenDialog }: ProfileFormProps) {
         />
 
         <Button type="submit" className="w-full">
-          Submit
+          Save changes
         </Button>
       </form>
     </Form>
