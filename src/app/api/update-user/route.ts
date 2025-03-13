@@ -12,13 +12,9 @@ export async function PATCH(req: NextRequest) {
 
     const data = await req.json();
 
-    const { avatarUrl } = data;
-
     const updatedUser = await prisma.user.update({
       where: { id: userId },
-      data: {
-        avatarUrl,
-      },
+      data: data,
     });
 
     return NextResponse.json(updatedUser);
