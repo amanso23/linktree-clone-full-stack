@@ -6,7 +6,7 @@ import { EditBackground } from "./EditBackground";
 
 export function ProfileInfo({ onReload }: ProfileInfoProps) {
   return (
-    <section className="flex justify-between items-center p-6">
+    <section className="flex justify-between items-center">
       <div className="flex items-center gap-4">
         <ProfileImage />
       </div>
