@@ -20,11 +20,6 @@ export function TabUpload({ setShowDialog, setShowTab }: TabUploadProps) {
     if (response.status === 200) {
       toast("Avatar Uploaded", {
         description: "Your avatar has been successfully uploaded.",
-        duration: 3000,
-        action: {
-          label: "Undo",
-          onClick: () => console.log("Undo clicked"),
-        },
       });
       setShowDialog(false);
       reloadUser();

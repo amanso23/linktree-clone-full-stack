@@ -22,11 +22,6 @@ export function TabDelete({ setShowDialog, setShowTab }: TabDeleteProps) {
     if (response.status === 200) {
       toast("Avatar Removed ", {
         description: "Your avatar has been successfully removed.",
-        duration: 3000,
-        action: {
-          label: "Undo",
-          onClick: () => console.log("Undo clicked"),
-        },
       });
 
       setShowDialog(false);
