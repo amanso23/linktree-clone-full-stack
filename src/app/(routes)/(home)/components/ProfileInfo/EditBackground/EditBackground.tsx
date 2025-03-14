@@ -33,11 +33,6 @@ export function EditBackground({ onReload }: EditBackgroundProps) {
     if (response.status === 200) {
       toast("Background updated ", {
         description: "Your background has been successfully updated.",
-        duration: 3000,
-        action: {
-          label: "Undo",
-          onClick: () => console.log("Undo clicked"),
-        },
       });
       setShowDialog(false);
       reloadUser();
