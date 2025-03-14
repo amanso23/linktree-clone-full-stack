@@ -10,12 +10,14 @@ import {
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarGroup,
   SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import { SignedIn, UserButton } from "@clerk/nextjs";
 
 // Menu items.
 const items = [
@@ -71,6 +73,11 @@ export function AppSidebar() {
           </SidebarMenu>
         </SidebarGroup>
       </SidebarContent>
+      <SidebarFooter>
+        <SignedIn>
+          <UserButton />
+        </SignedIn>
+      </SidebarFooter>
     </Sidebar>
   );
 }
