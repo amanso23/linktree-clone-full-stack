@@ -26,8 +26,6 @@ export function EditBackground({ onReload }: EditBackgroundProps) {
 
   if (!user) return null;
 
-  const { backgroundImage } = user;
-
   const onChangeBackground = async () => {
     const response = await axios.patch("/api/update-user", {
       backgroundImage: backgroundImageUrl,
