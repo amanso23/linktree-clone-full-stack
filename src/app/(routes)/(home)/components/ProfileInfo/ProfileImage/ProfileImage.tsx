@@ -1,7 +1,7 @@
 import { useUserInfo } from "@/hooks/useUser";
 import { useState } from "react";
 import Image from "next/image";
-import { Edit, Edit2, Plus } from "lucide-react";
+import { Edit2, Plus } from "lucide-react";
 
 import {
   Dialog,
