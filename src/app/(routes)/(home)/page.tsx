@@ -9,6 +9,7 @@ import { StepConfigUserProvider } from "@/contexts";
 import { UserProvider } from "@/contexts";
 import {
   HandlerSteps,
+  ListSocialNetworks,
   Profile,
   ProfileInfo,
   ProfilePreview,
@@ -51,15 +52,20 @@ export default function Home({ children }: { children: React.ReactNode }) {
 
   return (
     <UserProvider>
-      <div className={"grid grid-cols-1 gap-12 xl:grid-cols-[60%_auto]"}>
-        <section>
+      <div className={"grid grid-cols-1 gap-12 xl:grid-cols-[60%_auto] p-4"}>
+        <section className="space-y-8">
           <Profile />
           <ProfileInfo onReload={setReload} />
-          <div className="grid place-items-center opacity-60 mt-12">
-            <TreePalm className="w-auto h-16" />
-            <h2>Show the world who you are.</h2>
-            <h3>Add a link to get started</h3>
-          </div>
+
+          {infoUser.links.length > 0 ? (
+            <ListSocialNetworks onReload={setReload} links={infoUser.links} />
+          ) : (
+            <div className="grid place-items-center opacity-60 mt-12">
+              <TreePalm className="w-auto h-16" />
+              <h2>Show the world who you are.</h2>
+              <h3>Add a link to get started</h3>
+            </div>
+          )}
         </section>
         <section>
           <ProfilePreview />
