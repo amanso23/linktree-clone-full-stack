@@ -2,7 +2,6 @@
 
 import { Button } from "@/components/ui/button";
 import { useUserInfo } from "@/hooks/useUser";
-import { Copy } from "lucide-react";
 import { useState } from "react";
 
 export function ButtonCopy() {
@@ -12,9 +11,9 @@ export function ButtonCopy() {
   if (!user) return null;
 
   const copyToClipboard = async () => {
-    const url = `${window.location.origin}/${user.username}`;
+    const currentUrl = `${window.location.origin}/${user.username}`;
     await navigator.clipboard
-      .writeText(url)
+      .writeText(currentUrl)
       .then(() => {
         setIsCopy(true);
       })
