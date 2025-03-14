@@ -9,3 +9,4 @@ export * from "./Summary";
 
 export * from "./ProfileInfo";
 export * from "./ProfilePreview";
+export * from "./ListSocialNetworks";
