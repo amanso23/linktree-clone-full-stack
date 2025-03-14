@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ListSocialNetworksProps } from "./types";
 import Image from "next/image";
-import { ExternalLink, Link } from "lucide-react";
+import { Link } from "lucide-react";
 import { EditSocialNetwork } from "./EditSocialNetwork";
 import { RemoveSocialNetwork } from "./RemoveSocialNetwork";
 
