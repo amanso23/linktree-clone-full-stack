@@ -14,10 +14,13 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import axios from "axios";
 import { useState } from "react";
+import { Edit } from "lucide-react";
+import { useUserInfo } from "@/hooks/useUser";
 
 export function EditSocialNetwork({ link, onReload }: EditSocialNetworkProps) {
   const [linkUrl, setLinkUrl] = useState("");
   const [showDialog, setShowDialog] = useState(false);
+  const { reloadUser } = useUserInfo();
 
   console.log(linkUrl);
 
@@ -29,13 +32,16 @@ export function EditSocialNetwork({ link, onReload }: EditSocialNetworkProps) {
     if (response.status === 200) {
       onReload((prevState) => !prevState);
       setShowDialog(false);
+      reloadUser();
     }
   };
 
   return (
     <Dialog open={showDialog} onOpenChange={setShowDialog}>
       <DialogTrigger asChild>
-        <Button variant="outline">Edit</Button>
+        <Button variant="outline">
+          <Edit className="text-violet-500" />
+        </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
@@ -58,9 +64,10 @@ export function EditSocialNetwork({ link, onReload }: EditSocialNetworkProps) {
         </div>
 
         <DialogFooter>
-          <Button type="submit" onClick={onEditSocialNetwork}>
-            Save changes
+          <Button variant="outline" onClick={() => setShowDialog(false)}>
+            Cancel
           </Button>
+          <Button onClick={onEditSocialNetwork}>Save changes</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
