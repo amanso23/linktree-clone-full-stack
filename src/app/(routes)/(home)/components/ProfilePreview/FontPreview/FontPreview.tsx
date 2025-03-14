@@ -1,6 +1,7 @@
 import { useUserInfo } from "@/hooks/useUser";
 import { Palmtree } from "lucide-react";
 import Image from "next/image";
+import { LinksSocial } from "./LinksSocial";
 
 export function FontPreview() {
   const { user, links } = useUserInfo();
@@ -34,18 +35,9 @@ export function FontPreview() {
           <h3>@{username}</h3>
           {bio && <p className="text-xs">{bio}</p>}
 
-          {links && (
-            <ul className="min-h-[70%] flex flex-col gap-2 mt-6">
-              {links.map(({ name, link, icon }) => (
-                <li
-                  key={name}
-                  className="rounded-full text-xs px-2 py-2 border border-white min-w-48"
-                >
-                  {name}
-                </li>
-              ))}
-            </ul>
-          )}
+          <LinksSocial />
+
+          <div className="min-h-[70%]"></div>
 
           <h3 className="flex gap-2 items-center font-semibold">
             Linktree clone <Palmtree className="size-4" />
