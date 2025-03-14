@@ -24,11 +24,7 @@ export function RemoveSocialNetwork({
   const { reloadUser } = useUserInfo();
 
   const onRemoveSocialNetwork = async (linkId: string) => {
-    const response = await axios.delete("/api/delete-link", {
-      data: {
-        linkId,
-      },
-    });
+    const response = await axios.delete(`/api/link/${linkId}`);
 
     if (response.status === 200) {
       toast("Deleted Successfully!", {
