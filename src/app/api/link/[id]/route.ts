@@ -58,8 +58,6 @@ export async function DELETE(
 
     const { id } = await params;
 
-    console.log(id);
-
     if (!id) {
       return NextResponse.json({ message: "ID required!" }, { status: 400 });
     }
