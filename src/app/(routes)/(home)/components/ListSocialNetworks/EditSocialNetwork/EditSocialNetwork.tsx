@@ -25,8 +25,7 @@ export function EditSocialNetwork({ link, onReload }: EditSocialNetworkProps) {
   console.log(linkUrl);
 
   const onEditSocialNetwork = async () => {
-    const response = await axios.patch("/api/update-link", {
-      linkId: link.id,
+    const response = await axios.patch(`/api/link/${link.id}`, {
       link: linkUrl,
     });
     if (response.status === 200) {
