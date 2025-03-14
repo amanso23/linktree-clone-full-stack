@@ -58,7 +58,7 @@ export function TabUpload({ setShowDialog, setShowTab }: TabUploadProps) {
           alt="ProfileImage"
           width={300}
           height={300}
-          className="w-30 h-auto rounded-full self-center"
+          className="w-30 h-auto rounded-full self-center aspect-square"
         />
       )}
 
