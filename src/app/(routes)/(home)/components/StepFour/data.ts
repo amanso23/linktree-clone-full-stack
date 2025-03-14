@@ -6,6 +6,6 @@ export const dataStepFourImages = [
     src: "https://626a6b3cns.ufs.sh/f/cQaenfiARKuV89N6gc3M5sajXdwoevOBEAN7TDcrPCQlHMVt",
   },
   {
-    src: "https://626a6b3cns.ufs.sh/f/cQaenfiARKuVVJSgBQtjlKtMWuCrR2NSi31I0E5UFafc4Gwd",
+    src: "https://626a6b3cns.ufs.sh/f/cQaenfiARKuV9H7PhpXnCyW5slzBd18c3HRqoLt42SNbMeOh",
   },
 ];

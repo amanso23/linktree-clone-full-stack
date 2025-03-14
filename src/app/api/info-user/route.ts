@@ -28,7 +28,13 @@ export async function GET(req: NextRequest) {
             create: [],
           },
         },
-        include: { links: true },
+        include: {
+          links: {
+            orderBy: {
+              name: "asc",
+            },
+          },
+        },
       });
     }
 
