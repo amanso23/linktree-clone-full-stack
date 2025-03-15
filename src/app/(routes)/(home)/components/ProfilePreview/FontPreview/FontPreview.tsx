@@ -32,12 +32,12 @@ export function FontPreview() {
             className="rounded-full object-cover aspect-square"
           />
 
-          <h3>@{username}</h3>
-          {bio && <p className="text-xs">{bio}</p>}
+          <h3 className="font-medium">@{username}</h3>
+          {bio && <p className="text-pretty">{bio}</p>}
 
           <LinksSocial />
 
-          <div className="min-h-[70%]"></div>
+          <div className="min-h-[60%]"></div>
 
           <h3 className="flex gap-2 items-center font-semibold">
             Linktree clone <Palmtree className="size-4" />
