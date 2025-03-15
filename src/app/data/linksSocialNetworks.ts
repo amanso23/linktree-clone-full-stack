@@ -21,7 +21,7 @@ export const linksSocialNetworks = [
   },
   {
     icon: "https://626a6b3cns.ufs.sh/f/cQaenfiARKuVrfH7nrqKVkO2fyeY1hQWJ8TacPim5pMvw0H7",
-    name: "Twitter X",
+    name: "X",
     link: "",
   },
   {
