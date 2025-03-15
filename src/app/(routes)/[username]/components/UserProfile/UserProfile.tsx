@@ -1,16 +1,16 @@
 import Image from "next/image";
 import { UserProfileProps } from "./types";
-import { Link, TreePalm } from "lucide-react";
+import { TreePalm } from "lucide-react";
 import { MoreInfoProfile } from "../MoreInfoProfile";
 
 export function UserProfile({ user }: UserProfileProps) {
   return (
-    <div className="relative flex flex-col items-center justify-between gap-2 ">
+    <div className="relative flex flex-col items-center justify-between gap-2  ">
       {user.backgroundImage ? (
         <Image
           src={user.backgroundImage}
           alt="BackgroundImage"
-          layout="fill"
+          fill
           objectFit="cover"
           className="absolute top-0 left-0 w-full h-full"
         />
@@ -18,7 +18,7 @@ export function UserProfile({ user }: UserProfileProps) {
         <div className="absolute top-o left-0 h-full w-full bg-[#E4E9ED]" />
       )}
 
-      <div className="flex flex-col items-center gap-2 pt-10 w-full px-5 z-10 max-w-2xl mx-auto">
+      <div className="flex flex-col items-center gap-2 pt-10 w-full px-5 z-10 max-w-2xl mx-auto min-h-screen">
         <MoreInfoProfile user={user} />
         <Image
           src={user.avatarUrl || "/default-avatar.web"}
@@ -45,12 +45,11 @@ export function UserProfile({ user }: UserProfileProps) {
             </a>
           ))}
         </div>
-      </div>
-
-      <div className="pt-5 pb-5 z-10">
-        <div className="flex items-center justify-center gap-1 font-bold py-2 px-5 bg-white rounded-full shadow-md">
-          <TreePalm className="size-5" />
-          <p>Linktree clone</p>
+        <div className="pt-5 pb-5 z-10">
+          <div className="flex items-center justify-center gap-1 font-bold py-2 px-5 bg-white rounded-full shadow-md">
+            <TreePalm className="size-5" />
+            <p>Linktree clone</p>
+          </div>
         </div>
       </div>
     </div>
