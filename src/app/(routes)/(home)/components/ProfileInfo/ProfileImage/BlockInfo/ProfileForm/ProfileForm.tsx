@@ -70,11 +70,6 @@ export function ProfileForm({ setOpenDialog }: ProfileFormProps) {
     if (response.status === 200) {
       toast("User data uploaded", {
         description: "Your user data has been successfully uploaded.",
-        duration: 3000,
-        action: {
-          label: "Undo",
-          onClick: () => console.log("Undo clicked"),
-        },
       });
       reloadUser();
       setOpenDialog(false);
