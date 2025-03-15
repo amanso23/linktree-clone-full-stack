@@ -5,7 +5,7 @@ import { MoreInfoProfile } from "../MoreInfoProfile";
 
 export function UserProfile({ user }: UserProfileProps) {
   return (
-    <div className="flex flex-col items-center justify-between gap-2 h-screen max-w-2xl mx-auto">
+    <div className="relative flex flex-col items-center justify-between gap-2 ">
       {user.backgroundImage ? (
         <Image
           src={user.backgroundImage}
@@ -18,7 +18,7 @@ export function UserProfile({ user }: UserProfileProps) {
         <div className="absolute top-o left-0 h-full w-full bg-[#E4E9ED]" />
       )}
 
-      <div className="flex flex-col items-center gap-2 pt-32 w-full px-5 z-10">
+      <div className="flex flex-col items-center gap-2 pt-10 w-full px-5 z-10 max-w-2xl mx-auto">
         <MoreInfoProfile user={user} />
         <Image
           src={user.avatarUrl || "/default-avatar.web"}
@@ -39,7 +39,7 @@ export function UserProfile({ user }: UserProfileProps) {
         <div className="flex flex-col text-center gap-3 mt-6 w-full">
           {user.links.map(({ name, link }) => (
             <a key={name} href={link || ""} title={`Link to my ${name}`}>
-              <p className="px-2 py-3 w-full rounded-full bg-white/65 transition-all duration-300 hover:bg-transparent border-3 border-black font-semibold text-xl shadow-2xl">
+              <p className="px-2 py-4 w-full rounded-full bg-white/65 transition-all duration-300 hover:bg-transparent border-3 border-black font-semibold text-xl shadow-2xl">
                 {name}
               </p>
             </a>
@@ -47,7 +47,7 @@ export function UserProfile({ user }: UserProfileProps) {
         </div>
       </div>
 
-      <div className="pb-5 z-10">
+      <div className="pt-5 pb-5 z-10">
         <div className="flex items-center justify-center gap-1 font-bold py-2 px-5 bg-white rounded-full shadow-md">
           <TreePalm className="size-5" />
           <p>Linktree clone</p>
