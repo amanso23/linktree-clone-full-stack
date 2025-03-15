@@ -24,18 +24,18 @@ export function Profile() {
   };
 
   return (
-    <div className="bg-indigo-100 rounded-3xl">
+    <div className="bg-indigo-100 rounded-3xl border border-violet-600">
       <div className="flex flex-wrap flex-col justify-center text-center py-2 px-4 items-center gap-2 md:flex-row md:justify-start ">
         <h2>✨ Your Linktree clone is live:</h2>
-        <span className="link">
+        <span className="link font-bold text-violet-600">
           {origin ? `${origin}/${user.username}` : "Loading..."}
         </span>
         <Button
           variant={"outline"}
-          className="text-xs rounded-full"
+          className="text-xs "
           onClick={copyToClipboard}
         >
-          {copied ? "Copied!" : "Copy your linktree URL"}
+          {copied ? "Copied!" : "Copy"}
         </Button>
       </div>
     </div>
