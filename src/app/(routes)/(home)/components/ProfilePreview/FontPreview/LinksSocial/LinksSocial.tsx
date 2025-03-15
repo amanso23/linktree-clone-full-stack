@@ -7,19 +7,14 @@ export function LinksSocial() {
   if (!links) return null;
 
   return (
-    <ul className="flex item-center flex-wrap gap-2 mt-4">
-      {links.map(({ name, link, icon }) => (
-        <li key={name}>
-          <a
-            href={link || ""}
-            rel="noopener noreferrer"
-            target="_blank"
-            title={`Link to my ${name}`}
-          >
-            <Image src={icon || ""} alt="SocialIcon" width={30} height={30} />
-          </a>
-        </li>
+    <div className="flex flex-col text-center gap-2 mt-6 w-full">
+      {links.map(({ name, link }) => (
+        <a key={name} href={link || ""} title={`Link to my ${name}`}>
+          <p className="px-1 py-1.5 w-full rounded-full bg-white/65 transition-all duration-300 hover:bg-transparent border border-black font-semibold">
+            {name}
+          </p>
+        </a>
       ))}
-    </ul>
+    </div>
   );
 }
