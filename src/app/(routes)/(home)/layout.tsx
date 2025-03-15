@@ -1,5 +1,3 @@
-import { AppSidebar } from "@/components/Shared";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { Metadata } from "next";
 import { Toaster } from "sonner";
 
@@ -10,13 +8,10 @@ export const metadata: Metadata = {
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <SidebarProvider>
-      <AppSidebar />
-      <main className="w-full bg-gray-100">
-        <SidebarTrigger />
-        {children}
-        <Toaster />
-      </main>
-    </SidebarProvider>
+    <main className="w-full bg-gray-100">
+      <SidebarTrigger />
+      {children}
+      <Toaster />
+    </main>
   );
 }
