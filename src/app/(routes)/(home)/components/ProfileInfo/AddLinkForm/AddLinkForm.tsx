@@ -10,10 +10,13 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { useState } from "react";
 
 export function AddLinkForm({ onReload }: AddLinkFormProps) {
+  const [showDialog, setShowDialog] = useState(false);
+
   return (
-    <Dialog>
+    <Dialog open={showDialog} onOpenChange={setShowDialog}>
       <DialogTrigger asChild>
         <Button variant="outline">Add new link</Button>
       </DialogTrigger>
@@ -24,10 +27,7 @@ export function AddLinkForm({ onReload }: AddLinkFormProps) {
             Make changes to your profile here. Click save when you're done.
           </DialogDescription>
         </DialogHeader>
-        <Form onReload={onReload} />
-        <DialogFooter>
-          <Button type="submit">Save changes</Button>
-        </DialogFooter>
+        <Form onReload={onReload} setShowDialog={setShowDialog} />
       </DialogContent>
     </Dialog>
   );
