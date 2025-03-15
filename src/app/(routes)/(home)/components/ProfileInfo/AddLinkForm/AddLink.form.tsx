@@ -3,20 +3,24 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-
 import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+
+import { FormProps } from "./types";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { linksSocialNetworks } from "@/data/linksSocialNetworks";
+import { useUserInfo } from "@/hooks/useUser";
+import Image from "next/image";
 import { Input } from "@/components/ui/input";
-import { UploadButton } from "@/lib/uploadthing";
-import { AddLinkFormProps } from "./types";
+import axios from "axios";
+import { toast } from "sonner";
 
 const addLinkFormSchema = z.object({
   icon: z.string().optional(),
@@ -34,7 +38,8 @@ const addLinkFormSchema = z.object({
     .max(50),
 });
 
-export function AddLinkForm({ onReload }: AddLinkFormProps) {
+export function AddLinkForm({ onReload, setShowDialog }: FormProps) {
+  const { links, reloadUser } = useUserInfo();
   const form = useForm<z.infer<typeof addLinkFormSchema>>({
     resolver: zodResolver(addLinkFormSchema),
     defaultValues: {
@@ -44,54 +49,99 @@ export function AddLinkForm({ onReload }: AddLinkFormProps) {
     },
   });
 
-  const onSubmit = async (values: z.infer<typeof addLinkFormSchema>) => {};
+  const onSubmit = async (values: z.infer<typeof addLinkFormSchema>) => {
+    const response = await axios.post("/api/link", {
+      data: values,
+    });
+
+    if (response.status === 200) {
+      toast("Created new link", {
+        description: "Link created successfully",
+      });
+      setShowDialog(false);
+      onReload((prevState) => !prevState);
+      reloadUser();
+    }
+  };
+
+  const getNotSelectedSocialLinks = () => {
+    if (!links) return linksSocialNetworks;
+
+    return linksSocialNetworks.filter(
+      (link) => !links.some((l) => link.name === l.name)
+    );
+  };
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
         <FormField
           control={form.control}
           name="icon"
           render={({ field }) => (
-            <UploadButton
-              endpoint={"profileImage"}
-              onClientUploadComplete={(res) => {}}
-            />
+            <FormItem className="space-y-3">
+              <FormLabel>Select your icon</FormLabel>
+              <FormControl>
+                <RadioGroup
+                  onValueChange={(value) => {
+                    field.onChange(value);
+                    const selectedLink = linksSocialNetworks.find(
+                      (link) => link.icon === value
+                    );
+                    if (selectedLink) {
+                      form.setValue("name", selectedLink.name);
+                    }
+                  }}
+                  value={field.value || ""}
+                  className="flex flex-wrap gap-6 "
+                >
+                  {getNotSelectedSocialLinks().map(({ icon }) => (
+                    <FormItem className="flex items-center " key={icon}>
+                      <FormControl>
+                        <RadioGroupItem value={icon} />
+                      </FormControl>
+                      <FormLabel className="font-normal">
+                        <Image src={icon} alt="Icon" width={40} height={40} />
+                      </FormLabel>
+                    </FormItem>
+                  ))}
+                </RadioGroup>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
           )}
         />
+
         <FormField
           control={form.control}
           name="link"
           render={({ field }) => (
-            <FormItem>
-              <FormLabel>Link</FormLabel>
+            <FormItem className="space-y-3">
+              <FormLabel>Enter URL</FormLabel>
               <FormControl>
-                <Input placeholder="shadcn" {...field} />
+                <Input placeholder="URL" {...field} />
               </FormControl>
-              <FormDescription>
-                This is your public display name.
-              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
+
         <FormField
           control={form.control}
           name="name"
           render={({ field }) => (
-            <FormItem>
-              <FormLabel>Name</FormLabel>
+            <FormItem className="space-y-3">
+              <FormLabel>Enter URL</FormLabel>
               <FormControl>
-                <Input placeholder="shadcn" {...field} />
+                <Input placeholder="Name will be autofilled" {...field} />
               </FormControl>
-              <FormDescription>
-                This is your public display name.
-              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <Button type="submit" className="w-full">
+          Submit
+        </Button>
       </form>
     </Form>
   );
