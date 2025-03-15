@@ -70,6 +70,7 @@ export default function Home({ children }: { children: React.ReactNode }) {
           <ProfilePreview />
         </section>
       </div>
+
       {children}
     </UserProvider>
   );
