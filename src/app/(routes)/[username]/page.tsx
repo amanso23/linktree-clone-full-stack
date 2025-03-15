@@ -5,6 +5,8 @@ import { Link, User } from "@prisma/client";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { NotFoundUser, UserProfile } from "./components";
+import { useUser } from "@clerk/nextjs";
+import { RedirectUserDashboard } from "./components/RedirectUserDashboard";
 
 export default function Page() {
   const params = useParams();
@@ -15,6 +17,8 @@ export default function Page() {
     null
   );
   const [isLoading, setIsLoading] = useState(true);
+
+  const { user } = useUser();
 
   useEffect(() => {
     if (!username) {
@@ -44,12 +48,15 @@ export default function Page() {
     getInfoUser();
   }, [username, router]);
 
+  if (!user) return null;
+
   if (isLoading) return <LoaderProfile />;
   if (!infoUser) return <NotFoundUser />;
 
   return (
     <>
       <UserProfile user={infoUser} />
+      {user.id === infoUser.id && <RedirectUserDashboard />}
     </>
   );
 }
