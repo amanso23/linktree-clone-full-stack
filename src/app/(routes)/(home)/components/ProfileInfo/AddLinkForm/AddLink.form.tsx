@@ -21,9 +21,10 @@ import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import axios from "axios";
 import { toast } from "sonner";
+import { useEffect, useState } from "react";
 
 const addLinkFormSchema = z.object({
-  icon: z.string().optional(),
+  icon: z.string(),
   link: z
     .string()
     .min(2, {
@@ -40,6 +41,9 @@ const addLinkFormSchema = z.object({
 
 export function AddLinkForm({ onReload, setShowDialog }: FormProps) {
   const { links, reloadUser } = useUserInfo();
+  const [notSelecteLinks, setNotSelectedLinks] = useState<
+    z.infer<typeof addLinkFormSchema>[]
+  >([]);
   const form = useForm<z.infer<typeof addLinkFormSchema>>({
     resolver: zodResolver(addLinkFormSchema),
     defaultValues: {
@@ -72,77 +76,93 @@ export function AddLinkForm({ onReload, setShowDialog }: FormProps) {
     );
   };
 
+  useEffect(() => {
+    const data = getNotSelectedSocialLinks();
+    setNotSelectedLinks(data);
+  }, []);
+
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-        <FormField
-          control={form.control}
-          name="icon"
-          render={({ field }) => (
-            <FormItem className="space-y-3">
-              <FormLabel>Select your icon</FormLabel>
-              <FormControl>
-                <RadioGroup
-                  onValueChange={(value) => {
-                    field.onChange(value);
-                    const selectedLink = linksSocialNetworks.find(
-                      (link) => link.icon === value
-                    );
-                    if (selectedLink) {
-                      form.setValue("name", selectedLink.name);
-                    }
-                  }}
-                  value={field.value || ""}
-                  className="flex flex-wrap gap-6 "
-                >
-                  {getNotSelectedSocialLinks().map(({ icon }) => (
-                    <FormItem className="flex items-center " key={icon}>
-                      <FormControl>
-                        <RadioGroupItem value={icon} />
-                      </FormControl>
-                      <FormLabel className="font-normal">
-                        <Image src={icon} alt="Icon" width={40} height={40} />
-                      </FormLabel>
-                    </FormItem>
-                  ))}
-                </RadioGroup>
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+    <>
+      {notSelecteLinks.length !== 0 ? (
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+            <FormField
+              control={form.control}
+              name="icon"
+              render={({ field }) => (
+                <FormItem className="space-y-3">
+                  <FormLabel>Select your icon</FormLabel>
+                  <FormControl>
+                    <RadioGroup
+                      onValueChange={(value) => {
+                        field.onChange(value);
+                        const selectedLink = linksSocialNetworks.find(
+                          (link) => link.icon === value
+                        );
+                        if (selectedLink) {
+                          form.setValue("name", selectedLink.name);
+                        }
+                      }}
+                      value={field.value || ""}
+                      className="flex flex-wrap gap-6 "
+                    >
+                      {notSelecteLinks.map(({ icon }) => (
+                        <FormItem className="flex items-center " key={icon}>
+                          <FormControl>
+                            <RadioGroupItem value={icon} />
+                          </FormControl>
+                          <FormLabel className="font-normal">
+                            <Image
+                              src={icon}
+                              alt="Icon"
+                              width={40}
+                              height={40}
+                            />
+                          </FormLabel>
+                        </FormItem>
+                      ))}
+                    </RadioGroup>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-        <FormField
-          control={form.control}
-          name="link"
-          render={({ field }) => (
-            <FormItem className="space-y-3">
-              <FormLabel>Enter URL</FormLabel>
-              <FormControl>
-                <Input placeholder="URL" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+            <FormField
+              control={form.control}
+              name="link"
+              render={({ field }) => (
+                <FormItem className="space-y-3">
+                  <FormLabel>Enter URL</FormLabel>
+                  <FormControl>
+                    <Input placeholder="URL" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-        <FormField
-          control={form.control}
-          name="name"
-          render={({ field }) => (
-            <FormItem className="space-y-3">
-              <FormLabel>Enter URL</FormLabel>
-              <FormControl>
-                <Input placeholder="Name will be autofilled" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <Button type="submit" className="w-full">
-          Submit
-        </Button>
-      </form>
-    </Form>
+            <FormField
+              control={form.control}
+              name="name"
+              render={({ field }) => (
+                <FormItem className="space-y-3">
+                  <FormLabel>Enter URL</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Name will be autofilled" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <Button type="submit" className="w-full">
+              Submit
+            </Button>
+          </form>
+        </Form>
+      ) : (
+        <p>No social links availables</p>
+      )}
+    </>
   );
 }
