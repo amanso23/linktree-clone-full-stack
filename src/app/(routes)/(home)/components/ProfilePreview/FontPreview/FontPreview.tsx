@@ -14,7 +14,7 @@ export function FontPreview() {
       <div className="relative rounded-[2rem] overflow-hidden w-[290px] h-[590px] overflow-y-auto">
         {backgroundImage ? (
           <Image
-            layout="fill"
+            fill
             src={backgroundImage}
             alt="ProfileImage"
             className="absolute w-full h-full object-cover"
