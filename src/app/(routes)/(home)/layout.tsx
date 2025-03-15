@@ -2,8 +2,8 @@ import { Metadata } from "next";
 import { Toaster } from "sonner";
 
 export const metadata: Metadata = {
-  title: "Home",
-  description: "Home page",
+  title: "Dashboard",
+  description: "Dashboard user page",
 };
 
 export default function Layout({ children }: { children: React.ReactNode }) {
