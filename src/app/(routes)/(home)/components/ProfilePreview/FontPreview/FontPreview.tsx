@@ -32,8 +32,8 @@ export function FontPreview() {
             className="rounded-full object-cover aspect-square"
           />
 
-          <h3 className="font-medium mt-1">@{username}</h3>
-          {bio && <p className="text-pretty text-xs mt-2">{bio}</p>}
+          <h3 className="font-medium">@{username}</h3>
+          {bio && <p className="text-pretty text-xs ">{bio}</p>}
 
           <LinksSocial />
 
