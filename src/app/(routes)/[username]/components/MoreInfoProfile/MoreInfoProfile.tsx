@@ -18,7 +18,7 @@ export function MoreInfoProfile({ user }: MoreInfoProfileProps) {
     <div className="max-w-lg w-full mx-auto flex items-end justify-end">
       <Dialog>
         <DialogTrigger asChild>
-          <Button>
+          <Button variant={"outline"}>
             <MoreHorizontal className="size-4" />
           </Button>
         </DialogTrigger>
