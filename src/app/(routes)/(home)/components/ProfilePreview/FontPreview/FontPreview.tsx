@@ -33,7 +33,7 @@ export function FontPreview() {
           />
 
           <h3 className="font-medium">@{username}</h3>
-          {bio && <p className="text-pretty">{bio}</p>}
+          {bio && <p className="text-pretty text-xs mt-2">{bio}</p>}
 
           <LinksSocial />
 
