@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { useUserInfo } from "@/hooks/useUser";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export function Profile() {
@@ -17,9 +18,8 @@ export function Profile() {
   if (!user) return null;
 
   const copyToClipboard = () => {
-    const link = document.querySelector(".link");
-    if (!link) return;
-    navigator.clipboard.writeText(link.innerHTML);
+    const currentUrl = `${origin}/${user.username}`;
+    navigator.clipboard.writeText(currentUrl);
     setCopied(true);
   };
 
@@ -27,9 +27,12 @@ export function Profile() {
     <div className="bg-indigo-100 rounded-3xl border border-violet-600">
       <div className="flex flex-wrap flex-col justify-center text-center py-2 px-4 items-center gap-2 md:flex-row md:justify-start ">
         <h2>✨ Your Linktree clone is live:</h2>
-        <span className="link font-bold text-violet-600">
+        <Link
+          href={origin && `${origin}/${user.username}`}
+          className="link font-bold text-violet-600 transition-all duration-200 hover:underline"
+        >
           {origin ? `${origin}/${user.username}` : "Loading..."}
-        </span>
+        </Link>
         <Button
           variant={"outline"}
           className="text-xs "
@@ -37,6 +40,8 @@ export function Profile() {
         >
           {copied ? "Copied!" : "Copy"}
         </Button>
+
+        <a href=""></a>
       </div>
     </div>
   );
