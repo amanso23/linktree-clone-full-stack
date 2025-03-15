@@ -9,7 +9,6 @@ export const metadata: Metadata = {
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <main className="w-full bg-gray-100">
-      <SidebarTrigger />
       {children}
       <Toaster />
     </main>
