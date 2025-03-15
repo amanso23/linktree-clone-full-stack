@@ -10,12 +10,12 @@ export function ListSocialNetworks({
   onReload,
 }: ListSocialNetworksProps) {
   return (
-    <div className="flex flex-col  gap-4 max-w-2xl mx-auto">
+    <div className="flex flex-col gap-4">
       {links &&
         links.map((link) => (
           <div
             key={link.name}
-            className="flex items-center justify-between  gap-3 rounded-full bg-white px-4 py-4"
+            className="flex items-center justify-between gap-3 rounded-full bg-white px-5 py-3"
           >
             <div className="flex items-center gap-3">
               <div>
