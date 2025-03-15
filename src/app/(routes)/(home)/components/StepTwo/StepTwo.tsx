@@ -1,9 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { useStepConfig } from "@/hooks/useStepConfig";
-import { stepTwoData } from "./data";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { InfoUserType } from "@/contexts/StepConfigUser/types";
+import { linksSocialNetworks } from "@/data/linksSocialNetworks";
 
 export function StepTwo() {
   const { setInfoUser, infoUser, nextStep } = useStepConfig();
@@ -36,7 +36,7 @@ export function StepTwo() {
       <h2 className="text-2xl">Which links are you</h2>
       <p>Pickup the ones you are on.</p>
       <ul className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
-        {stepTwoData.map(({ name, icon, link }) => (
+        {linksSocialNetworks.map(({ name, icon, link }) => (
           <li
             key={name}
             className={`flex flex-col gap-1 items-center justify-center rounded-lg border py-3 transition-all duration-300 cursor-pointer ${
