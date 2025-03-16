@@ -7,8 +7,6 @@ import Image from "next/image";
 export function StepThree() {
   const { infoUser, setInfoUser, nextStep } = useStepConfig();
 
-  console.log(infoUser);
-
   const handleContinue = () => {
     const updatedLinks = infoUser.links.map(({ icon, name }) => {
       const input = document.getElementById(
