@@ -11,8 +11,8 @@ export function NotFoundUser() {
       </h1>
 
       <p className="text-xl text-center max-w-lg mx-auto">
-        Looks like the page you're looking for doesn't exist. Want this to be
-        your username?
+        Looks like the page you are looking for not exist. Want this to be your
+        username?
       </p>
 
       <Link href={"/"}>

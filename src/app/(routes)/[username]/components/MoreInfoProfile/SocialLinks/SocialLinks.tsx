@@ -5,7 +5,6 @@ import { SocialLinksProps } from "./types";
 import { Button } from "@/components/ui/button";
 import { dataLinks } from "./data";
 import Image from "next/image";
-Image;
 
 export function SocialLinks({ userName }: SocialLinksProps) {
   const copyToClipboard = () => {

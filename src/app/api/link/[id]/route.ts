@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function PATCH(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const { userId } = getAuth(req);
@@ -37,6 +37,7 @@ export async function PATCH(
     return NextResponse.json(
       {
         message: "Failed to update the link",
+        error: error,
       },
       {
         status: 500,
@@ -47,7 +48,7 @@ export async function PATCH(
 
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const { userId } = getAuth(req);
@@ -73,6 +74,7 @@ export async function DELETE(
     return NextResponse.json(
       {
         message: "Failed to delete the link",
+        error: error,
       },
       {
         status: 500,
