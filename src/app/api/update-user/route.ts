@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { getAuth } from "@clerk/nextjs/server";
+import { create } from "domain";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function PATCH(req: NextRequest) {
@@ -12,15 +13,24 @@ export async function PATCH(req: NextRequest) {
 
     const data = await req.json();
 
+    const { links, ...userData } = data;
+
+    console.log(links);
+
     const updatedUser = await prisma.user.update({
       where: { id: userId },
-      data: data,
+      data: {
+        ...userData,
+        links: {
+          create: links,
+        },
+      },
     });
 
     return NextResponse.json(updatedUser);
   } catch (error) {
     return NextResponse.json(
-      { message: "Error updating avatar", error: error },
+      { message: "Error updating user", error: error },
       { status: 500 }
     );
   }
