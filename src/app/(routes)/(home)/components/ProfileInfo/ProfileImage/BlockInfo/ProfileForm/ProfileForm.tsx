@@ -47,16 +47,12 @@ const profileFormSchema = z.object({
 export function ProfileForm({ setOpenDialog }: ProfileFormProps) {
   const { user, reloadUser } = useUserInfo();
 
-  if (!user) return null;
-
-  const { name, username, bio } = user;
-
   const form = useForm<z.infer<typeof profileFormSchema>>({
     resolver: zodResolver(profileFormSchema),
     defaultValues: {
-      username: username || "",
-      name: name || "",
-      bio: bio || "",
+      username: user?.username || "",
+      name: user?.name || "",
+      bio: user?.bio || "",
     },
   });
 
