@@ -1,14 +1,15 @@
 import { useUserInfo } from "@/hooks/useUser";
-import { Palmtree, TreePalm } from "lucide-react";
+import { TreePalm } from "lucide-react";
 import Image from "next/image";
 import { LinksSocial } from "./LinksSocial";
 
 export function FontPreview() {
-  const { user, links } = useUserInfo();
+  const { user } = useUserInfo();
 
   if (!user) return null;
 
   const { backgroundImage, avatarUrl, username, bio } = user;
+
   return (
     <div className="relative mx-auto border-white border-[5px] rounded-[2.5rem] shadow-2xl">
       <div className="relative rounded-[2rem] overflow-hidden w-[290px] h-[590px] overflow-y-auto">
