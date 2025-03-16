@@ -15,7 +15,7 @@ import {
   ProfilePreview,
 } from "@/(routes)/(home)/components";
 
-export default function Home({ children }: { children: React.ReactNode }) {
+export default function Home() {
   const { user } = useUser();
   const [isFirstVisit, setIsFirstVisit] = useState(false);
   const [reload, setReload] = useState(false);
@@ -75,8 +75,6 @@ export default function Home({ children }: { children: React.ReactNode }) {
           <UserButton />
         </SignedIn>
       </div>
-
-      {children}
     </UserProvider>
   );
 }
