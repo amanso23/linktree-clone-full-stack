@@ -39,8 +39,6 @@ export function MoreInfoProfile({ user }: MoreInfoProfileProps) {
             </div>
             <SocialLinks userName={user.username} />
           </DialogHeader>
-
-          <DialogFooter></DialogFooter>
         </DialogContent>
       </Dialog>
     </div>
