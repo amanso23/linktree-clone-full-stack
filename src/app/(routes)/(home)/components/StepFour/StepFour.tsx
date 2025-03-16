@@ -27,15 +27,17 @@ export function StepFour() {
     setInfoUser((prevState) => ({
       ...prevState,
       name: name,
+      links: infoUser.links,
       username: username,
       avatarUrl: avatarUrl,
     }));
 
     try {
-      const response = await axios.post("/api/user", {
+      const response = await axios.patch("/api/update-user", {
         name: name,
         username: username,
         avatarUrl: avatarUrl,
+        firstLogin: false,
         links: infoUser.links,
         typeUser: infoUser.typeUser,
       });
@@ -43,11 +45,7 @@ export function StepFour() {
       if (response.status === 200) nextStep();
     } catch (error) {
       toast("ERROR", {
-        description: "User exists, please try other user.",
-        action: {
-          label: "Undo",
-          onClick: () => console.log("Undo"),
-        },
+        description: "User exists, please try other user:",
       });
       console.error(error);
     }
