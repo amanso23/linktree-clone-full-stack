@@ -23,6 +23,7 @@ export function UserProvider({ children }: UserProviderProps) {
       setIsLoading(true);
       const response = await fetch("api/info-user");
       const data = await response.json();
+
       setInfoUser(data);
       setLinks(data.links || []);
     } catch (error) {
