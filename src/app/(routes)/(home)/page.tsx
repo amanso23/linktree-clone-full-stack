@@ -1,13 +1,7 @@
 "use client";
 
 import { TreePalm } from "lucide-react";
-import {
-  SignedIn,
-  SignUpButton,
-  SignOutButton,
-  UserProfile,
-  useUser,
-} from "@clerk/nextjs";
+import { SignedIn, useUser, UserButton } from "@clerk/nextjs";
 import { useEffect, useState } from "react";
 import { Link, User } from "@prisma/client";
 import { LoaderProfile } from "@/components/Shared";
@@ -76,7 +70,11 @@ export default function Home({ children }: { children: React.ReactNode }) {
           <ProfilePreview />
         </section>
       </div>
-      <div className="absolute bottom-0 left-0 m-8"></div>
+      <div className="fixed bottom-0 left-0 m-2">
+        <SignedIn>
+          <UserButton />
+        </SignedIn>
+      </div>
 
       {children}
     </UserProvider>
