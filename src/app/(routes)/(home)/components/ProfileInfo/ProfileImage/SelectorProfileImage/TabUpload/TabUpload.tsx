@@ -9,7 +9,7 @@ import axios from "axios";
 import { toast } from "sonner";
 
 export function TabUpload({ setShowDialog, setShowTab }: TabUploadProps) {
-  const { user, reloadUser } = useUserInfo();
+  const { reloadUser } = useUserInfo();
   const [avatarUrl, setAvatarUrl] = useState("");
 
   const onUploadAvatar = async () => {
