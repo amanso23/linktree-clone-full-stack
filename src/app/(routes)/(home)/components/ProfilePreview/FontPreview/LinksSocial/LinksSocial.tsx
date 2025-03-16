@@ -1,5 +1,4 @@
 import { useUserInfo } from "@/hooks/useUser";
-import Image from "next/image";
 
 export function LinksSocial() {
   const { links } = useUserInfo();
