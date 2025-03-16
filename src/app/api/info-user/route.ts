@@ -24,6 +24,8 @@ export async function GET(req: NextRequest) {
           id: userId,
           name: "User",
           username: `user_${Date.now()}`,
+          bio: "Welcome to Linktree Clone 😄",
+          backgroundImage: "/default-background.webp",
           links: {
             create: [],
           },
